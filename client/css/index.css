@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica;
+}
+
+.navbar-subtitle {
+    color: white;
+}
+
+.error-msg {
+    color: rgb(202, 39, 39);
+}
+
+.item-link {
+    transition: 200ms background ease-in-out;
+}
+
+.item-link:hover {
+    background-color: #146841;
+}
+
+@media only screen and (max-width: 450px) {
+    .id-family {
+        max-width: 10px;
+        word-wrap: break-word;
+    }
+}
