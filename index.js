@@ -51,8 +51,7 @@ app.use(
 // app.use(cookieParser());
 app.use(express.static("./public"));
 app.set("view engine", "ejs");
-const PORT = process.env.PORT === undefined ? 3000 : process.env.PORT;
-console.log(process.env.PORT);
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
