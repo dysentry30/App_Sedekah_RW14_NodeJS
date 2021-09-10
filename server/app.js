@@ -52,7 +52,7 @@ app.use(
 app.use(express.static("./client"));
 app.set("view engine", "ejs");
 
-app.listen(process.env.PORT | "3000", () => {
+app.listen(process.env.PORT || "3000", () => {
     console.log(`Listening on port ${process.env.PORT}`);
 });
 
