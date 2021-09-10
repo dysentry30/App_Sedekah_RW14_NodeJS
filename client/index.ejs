@@ -88,7 +88,7 @@
                                             <% listCitizen.forEach(citizen=> { %>
                                                 <% if (citizen.rt==people.rt) { %>
                                                     <% const now = Date("now"); %> 
-                                                    <% const added_time = Date.parse(`${result[0].added_time}`) %> 
+                                                    <% const added_time = Date.parse(`${citizen.added_time}`) %> 
                                                     <% totalAmount +=citizen.jumlah_sedekah %>
                                                         <tbody>
                                                             <tr class="<%= citizen.sudah_sedekah==true ? "table-success" : "table-danger "%>">

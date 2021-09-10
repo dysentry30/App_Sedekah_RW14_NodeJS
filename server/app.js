@@ -17,15 +17,15 @@ const passwordHash = require("password-hash");
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "merak32",
-    database: "app_sedekah_warga_rw14",
+    password: "password",
+    database: "app_sedekah_rw14",
 });
 
 const store = new MySQLStore({
     host: "localhost",
     user: "root",
-    password: "merak32",
-    database: "app_sedekah_warga_rw14",
+    password: "password",
+    database: "app_sedekah_rw14",
 });
 
 const isUserLoggedIn = (req, res, next) => {
@@ -51,9 +51,11 @@ app.use(
 // app.use(cookieParser());
 app.use(express.static("./client"));
 app.set("view engine", "ejs");
+const PORT = process.env.PORT === undefined ? 3000 : process.env.PORT;
+console.log(process.env.PORT);
 
-app.listen(process.env.PORT || "3000", () => {
-    console.log(`Listening on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 });
 
 con.connect((err) => {
