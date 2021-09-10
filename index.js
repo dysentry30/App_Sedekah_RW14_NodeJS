@@ -49,7 +49,7 @@ app.use(
     })
 );
 // app.use(cookieParser());
-app.use(express.static("./client"));
+app.use(express.static("./public"));
 app.set("view engine", "ejs");
 const PORT = process.env.PORT === undefined ? 3000 : process.env.PORT;
 console.log(process.env.PORT);
