@@ -1,5 +1,5 @@
 // ! debug only
-// username: bagassn30
+// username: bagassn
 // pw: merak32
 // username: heru30
 // pw: heru1234
@@ -177,7 +177,8 @@ con.connect((err) => {
         const user = req.body;
         const query = `SELECT * FROM users WHERE username = '${user.username}'`;
         con.query(query, (err, result) => {
-            if (result[0] !== undefined) {
+            console.log(result);
+            if (result !== undefined) {
                 if (passwordHash.verify(user.password, result[0].password)) {
                     if (req.get("user-agent").match("Dart")) {
                         const data = {
