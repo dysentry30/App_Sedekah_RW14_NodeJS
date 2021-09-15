@@ -12,6 +12,7 @@ const MySQLStore = require("express-mysql-session");
 const dotEnv = require("dotenv");
 const mysql = require("mysql");
 const passwordHash = require("password-hash");
+const path = require("path");
 // const cookieParser = require("cookie-parser");
 // const { Session } = require("express-session");
 const con = mysql.createConnection({
@@ -49,8 +50,10 @@ app.use(
     })
 );
 // app.use(cookieParser());
-app.use(express.static("./public"));
+app.use(express.static(path.join(__dirname, "public")))
+// app.engine('html', require('ejs').renderFile);
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "public"));
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
@@ -62,6 +65,9 @@ con.connect((err) => {
     console.log("Database Connected");
 
     app.get("/", (req, res) => {
+        // res.json({
+        //     test: "test",
+        // })
         let query =
             "SELECT * FROM warga LEFT JOIN sedekah USING(id_warga) ORDER BY sedekah.added_time DESC";
         con.query(query, (err, result, fields) => {
@@ -70,7 +76,7 @@ con.connect((err) => {
             query = "SELECT DISTINCT rt FROM warga ORDER BY warga.rt ASC";
             con.query(query, (err, result, fields) => {
                 const listRT = result;
-                res.render("../client/index", {
+                res.render("../public/index", {
                     listCitizen: listCitizen,
                     listRT: listRT,
                     user: req.session.user ? req.session.user : null,
@@ -84,7 +90,7 @@ con.connect((err) => {
         let query = `SELECT * FROM warga WHERE warga.id_warga = ${id}`;
         con.query(query, (err, result, fields) => {
             if (err) throw err;
-            res.render("../client/cari-kk", {
+            res.render("../public/cari-kk", {
                 id,
                 result,
                 user: req.session.user,
@@ -115,7 +121,7 @@ con.connect((err) => {
     });
 
     app.get("/pendaftaran-warga", (req, res) => {
-        res.render("../client/pendaftaran-warga");
+        res.render("../public/pendaftaran-warga");
     });
 
     app.post("/daftar-warga-baru", (req, res) => {
@@ -136,11 +142,11 @@ con.connect((err) => {
     });
 
     app.get("/masuk", isUserLoggedIn, (req, res) => {
-        res.render("../client/masuk");
+        res.render("../public/masuk");
     });
 
     app.get("/daftar-admin", isUserLoggedIn, (req, res) => {
-        res.render("../client/daftar-admin");
+        res.render("../public/daftar-admin");
     });
 
     app.post("/daftar-admin", isUserLoggedIn, (req, res) => {
@@ -220,3 +226,4 @@ con.connect((err) => {
         return res.sendStatus("404");
     });
 });
+module.exports = app;
