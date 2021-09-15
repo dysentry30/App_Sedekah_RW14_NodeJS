@@ -60,7 +60,7 @@ app.set("views", path.join(__dirname, "public"));
 const PORT = 80 || process.env.PORT;
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${VERCEL_URL}`);
+    console.log(`Listening on port ${process.env.VERCEL_URL}`);
 });
 
 con.connect((err) => {
