@@ -7,23 +7,26 @@
 // pw: joko1234
 
 const express = require("express");
+const http  = require("http");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session");
 const dotEnv = require("dotenv");
 const mysql = require("mysql");
 const passwordHash = require("password-hash");
 const path = require("path");
+const { Http2ServerRequest } = require("http2");
 // const cookieParser = require("cookie-parser");
 // const { Session } = require("express-session");
+const host = process.env.VERCEL_URL || "localhost"
 const con = mysql.createConnection({
-    host: "localhost",
+    host: host,
     user: "root",
     password: "password",
     database: "app_sedekah_rw14",
 });
 
 const store = new MySQLStore({
-    host: "localhost",
+    host: host,
     user: "root",
     password: "password",
     database: "app_sedekah_rw14",
@@ -54,10 +57,10 @@ app.use(express.static(path.join(__dirname, "public")))
 // app.engine('html', require('ejs').renderFile);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "public"));
-const PORT = process.env.PORT || 3000;
+const PORT = 80 || process.env.PORT;
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+    console.log(`Listening on port ${VERCEL_URL}`);
 });
 
 con.connect((err) => {
