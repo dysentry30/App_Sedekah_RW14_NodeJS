@@ -45,7 +45,7 @@ app.use(
         saveUninitialized: false,
         resave: false,
         // name: "user",
-        // store: store,
+        store: store,
     })
 );
 // app.use(cookieParser());
