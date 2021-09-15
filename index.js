@@ -7,28 +7,26 @@
 // pw: joko1234
 
 const express = require("express");
-const http  = require("http");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session");
 const dotEnv = require("dotenv");
 const mysql = require("mysql");
 const passwordHash = require("password-hash");
 const path = require("path");
-const { Http2ServerRequest } = require("http2");
 // const cookieParser = require("cookie-parser");
 // const { Session } = require("express-session");
-const host = process.env.VERCEL_URL || "localhost"
+// const host = process.env.VERCEL_URL || "localhost"
 const con = mysql.createConnection({
-    host: host,
-    user: "root",
-    password: "password",
+    host: "sql201.epizy.com",
+    user: "epiz_29747432",
+    password: "Bagassatria30",
     database: "app_sedekah_rw14",
 });
 
 const store = new MySQLStore({
-    host: host,
-    user: "root",
-    password: "password",
+    host: "sql201.epizy.com",
+    user: "epiz_29747432",
+    password: "Bagassatria30",
     database: "app_sedekah_rw14",
 });
 
