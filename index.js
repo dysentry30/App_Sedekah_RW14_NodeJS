@@ -220,5 +220,3 @@ con.connect((err) => {
         return res.sendStatus("404");
     });
 });
-
-module.exports = app;
